@@ -1,0 +1,7 @@
+server:
+  port: 5000
+
+external:
+  api:
+    base-url: http://localhost:3001
+    product-detail-timeout-ms: 2000
