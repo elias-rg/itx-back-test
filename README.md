@@ -1,5 +1,8 @@
 # itx-back-test — Similar Products API
 
+[![CI](https://github.com/elias-rg/itx-back-test/actions/workflows/ci.yml/badge.svg)](https://github.com/elias-rg/itx-back-test/actions/workflows/ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=elias-rg_itx-back-test&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=elias-rg_itx-back-test)
+
 ## Español
 
 ### Descripción
@@ -40,6 +43,11 @@ GET http://localhost:5000/product/{productId}/similar
 ```
 
 **Respuesta 404:** cuando el producto no existe.
+
+### CI / Calidad
+
+- **GitHub Actions**: compila, ejecuta tests y genera cobertura con JaCoCo en cada push y PR a `master`.
+- **SonarCloud**: análisis estático de código y cobertura (requiere el secret `sonar` en la configuración del repositorio).
 
 ### Decisiones técnicas
 
@@ -123,6 +131,11 @@ GET http://localhost:5000/product/{productId}/similar
 ```
 
 **404 response:** when the product does not exist.
+
+### CI / Quality
+
+- **GitHub Actions**: builds, runs tests and generates JaCoCo coverage on every push and PR to `master`.
+- **SonarCloud**: static code analysis and coverage reporting (requires `sonar` secret in repository settings).
 
 ### Technical decisions
 
