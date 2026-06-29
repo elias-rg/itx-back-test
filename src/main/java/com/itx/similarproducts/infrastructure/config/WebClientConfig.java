@@ -1,6 +1,5 @@
 package com.itx.similarproducts.infrastructure.config;
 
-import io.netty.channel.ChannelOption;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,13 +18,10 @@ public class WebClientConfig {
         ConnectionProvider connectionProvider = ConnectionProvider.builder("external-api")
                 .maxConnections(500)
                 .pendingAcquireMaxCount(1000)
-                .pendingAcquireTimeout(Duration.ofSeconds(5))
-                .maxIdleTime(Duration.ofSeconds(20))
-                .evictInBackground(Duration.ofSeconds(30))
+                .pendingAcquireTimeout(Duration.ofSeconds(10))
                 .build();
 
-        HttpClient httpClient = HttpClient.create(connectionProvider)
-                .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000);
+        HttpClient httpClient = HttpClient.create(connectionProvider);
 
         return WebClient.builder()
                 .baseUrl(baseUrl)
