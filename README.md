@@ -52,7 +52,7 @@ GET http://localhost:5000/product/{productId}/similar
 ### Decisiones técnicas
 
 - **WebFlux + flatMap**: las llamadas de detalle de producto se ejecutan **en paralelo**, no secuencialmente.
-- **Timeout de 2s por producto**: productos cuya respuesta supere los 2 segundos son descartados silenciosamente.
+- **Timeout de 2s en todas las llamadas externas**: tanto la obtención de IDs similares como el detalle de cada producto tienen un timeout de 2s, evitando que una llamada colgada bloquee la request.
 - **Resiliencia**: si un producto similar devuelve 404 o 500, se omite y se devuelven el resto.
 - **Configuración externalizada**: el timeout y la URL base de la API externa son configurables via `application.yml`.
 
@@ -140,7 +140,7 @@ GET http://localhost:5000/product/{productId}/similar
 ### Technical decisions
 
 - **WebFlux + flatMap**: product detail calls are executed **in parallel**, not sequentially.
-- **2s timeout per product**: products whose response exceeds 2 seconds are silently discarded.
+- **2s timeout on all external calls**: both the similar IDs fetch and each product detail call have a 2s timeout, preventing a hung call from blocking the entire request.
 - **Resilience**: if a similar product returns 404 or 500, it is skipped and the rest are returned.
 - **Externalized configuration**: timeout and external API base URL are configurable via `application.yml`.
 
