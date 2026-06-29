@@ -33,7 +33,8 @@ public class ExternalProductApiAdapter implements SimilarProductIdsPort, Product
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError,
                         response -> Mono.error(new ProductNotFoundException(productId)))
-                .bodyToMono(new ParameterizedTypeReference<List<String>>() {});
+                .bodyToMono(new ParameterizedTypeReference<List<String>>() {})
+                .timeout(productDetailTimeout);
     }
 
     @Override
